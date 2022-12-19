@@ -10,8 +10,8 @@ export default function HeroCard({ currentCity }) {
           .map((hero) => {
             return (
               <div
-                className='flex flex-col w-40 md:w-48 h-auto place-content-center justify-self-center items-center gap-2 ring-2 ring-sky-500 rounded-md shadow-md shadow-[#121212] my-2 text-xs text-gray-200 font-josefim bg-[#121212] hover:bg-[#262626] hover:border-2 hover:border-sky-500 hover:ring-2 active:absolute active:w-96 active:text-lg active:bg-[#121212] active:top-10'
-                key={hero.id}              
+                className='cardClass'
+                key={hero.id}
                 name={hero.name}
               >
                 <img
