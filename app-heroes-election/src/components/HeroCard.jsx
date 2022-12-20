@@ -1,4 +1,8 @@
-export default function HeroCard({ currentCity }) {
+import { useContext } from 'react';
+import ElectionContext from '../context/ElectionContext';
+
+export default function HeroCard() {
+  const { currentCity } = useContext(ElectionContext);
   const sortedData = currentCity.results
     ? currentCity.results.sort((a, b) => b.votes - a.votes)
     : '';
@@ -9,11 +13,7 @@ export default function HeroCard({ currentCity }) {
           .sort((a, b) => b.votes - a.votes)
           .map((hero) => {
             return (
-              <div
-                className='cardClass'
-                key={hero.id}
-                name={hero.name}
-              >
+              <div className='cardClass' key={hero.id} name={hero.name}>
                 <img
                   className='w-auto h-auto rounded-full'
                   src={hero.image}

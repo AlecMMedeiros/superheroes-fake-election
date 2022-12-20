@@ -1,29 +1,22 @@
-import { useEffect, useState } from 'react';
-import { formatApiData } from './services/cities.service';
+import { useEffect } from 'react';
 import HeroesVotes from './pages/HeroesVotes';
+import { useContext } from 'react';
+import ElectionContext from './context/ElectionContext';
 
 function App() {
-  const [baseData, setBaseData] = useState('Asgard');
-  const [currentCity, setCurrentyCity] = useState([]);
-
-  const fetchAllCities = async (getSelectedCity) => {
-    const getData = await formatApiData(getSelectedCity);
-    setCurrentyCity(getData);
-  };
-
-  const changeCity=(newcity)=>{
-    setBaseData(newcity);
-  }
+  const { fetchAllCities } = useContext(ElectionContext)
+  const { baseData } =  useContext(ElectionContext);
 
   useEffect(() => {
-    fetchAllCities(baseData);
+    fetchAllCities(baseData); 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [baseData]);
 
-  return (
-    <main>    
-      <HeroesVotes changeCity={changeCity} currentCity={currentCity} />
-    </main>
-  );
+  return (    
+      <main>    
+        <HeroesVotes />
+      </main>
+    );
 }
 
 export default App;

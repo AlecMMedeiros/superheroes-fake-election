@@ -1,11 +1,11 @@
 import HeroCard from '../components/HeroCard';
 import Header from '../components/Header';
 
-export default function HeroesVotes({ currentCity, changeCity }) {
+export default function HeroesVotes() { 
   return (
     <section>
-      <Header changeCity={changeCity} currentCity={currentCity} />
-      <HeroCard currentCity={currentCity} />
+      <Header />
+      <HeroCard />
     </section>
   );
 }

@@ -1,4 +1,8 @@
-export default function Header({ currentCity, changeCity }) {
+import { useContext } from 'react';
+import ElectionContext from '../context/ElectionContext';
+
+export default function Header() {
+  const { changeCity, currentCity } = useContext(ElectionContext);
   const handleCity = ({ currentTarget }) => {
     changeCity(currentTarget.value);
   };
@@ -8,11 +12,19 @@ export default function Header({ currentCity, changeCity }) {
         className={`flex flex-col items-center gap-2
          fixed top-0 h-28 w-screen shadow-md shadow-[#262626] text-sm text-gray-200 text-center font-josefim `}
       >
-        <h1 className="text-2xl font-semibold mt-2 w-screen bg-[#121212]">{currentCity.cityName}</h1>
-        <div className="flex gap-2 mt-2 bg-[#121212]">
-        <span>Voters: {Intl.NumberFormat().format(currentCity.votingPopulation)}</span>
-        <span>Absence: {Intl.NumberFormat().format(currentCity.absence)}</span>
-        <span>Presence: {Intl.NumberFormat().format(currentCity.presence)}</span>
+        <h1 className='text-2xl font-semibold mt-2 w-screen bg-[#121212]'>
+          {currentCity.cityName}
+        </h1>
+        <div className='flex gap-2 mt-2 bg-[#121212]'>
+          <span>
+            Voters: {Intl.NumberFormat().format(currentCity.votingPopulation)}
+          </span>
+          <span>
+            Absence: {Intl.NumberFormat().format(currentCity.absence)}
+          </span>
+          <span>
+            Presence: {Intl.NumberFormat().format(currentCity.presence)}
+          </span>
         </div>
         <select
           onChange={handleCity}
