@@ -3,18 +3,21 @@ import HeroesVotes from './pages/HeroesVotes';
 import { useContext } from 'react';
 import ElectionContext from './context/ElectionContext';
 import Loading from './components/Loading';
+import Error from './components/Error';
+
 
 function App() {
-  const { fetchAllCities, baseData, loading } = useContext(ElectionContext)  ;
+  const { fetchAllCities, baseData, loading, error } = useContext(ElectionContext)  ;
 
   useEffect(() => {
     fetchAllCities(baseData); 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [baseData]);
 
-  return (    
+  return (   
+     
       <main>
-        { loading ? <Loading /> :  <HeroesVotes /> }
+        { error ? <Error error={error}/> : loading ? <Loading /> :  <HeroesVotes /> }
       </main>
     );
 }

@@ -1,15 +1,16 @@
-import axios from 'axios';
+import { instanceAxios } from './api';
+
 
 const apiGetCityId = async (city) => {
-  const fetchedCities = await axios
-    .get('http://localhost:3001/cities', { params: { name: city } })
+  const fetchedCities = await instanceAxios
+    .get('cities', { params: { name: city } })
     .then((response) => response.data);
   return fetchedCities;
 };
 
 const mergeElectionWithNames = async (candidatesData, city) => {
   const citiesData = await apiGetCityId(city);
-  const electionData = await axios.get('http://localhost:3001/election', {
+  const electionData = await instanceAxios.get('election', {
     params: { cityId: citiesData[0].id },
   });
   electionData.data.forEach((candidateFomElection) => {
@@ -27,7 +28,7 @@ const mergeElectionWithNames = async (candidatesData, city) => {
 };
 
 export const formatApiData = async (city) => {
-  const candidatesData = await axios.get('http://localhost:3001/candidates', {
+  const candidatesData = await instanceAxios.get('candidates', {
     params: { name: null },
   });
   const base = [];
