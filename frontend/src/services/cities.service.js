@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const getCityId = async (city) => {
+const apiGetCityId = async (city) => {
   const fetchedCities = await axios
     .get('http://localhost:3001/cities', { params: { name: city } })
     .then((response) => response.data);
@@ -8,7 +8,7 @@ const getCityId = async (city) => {
 };
 
 const mergeElectionWithNames = async (candidatesData, city) => {
-  const citiesData = await getCityId(city);
+  const citiesData = await apiGetCityId(city);
   const electionData = await axios.get('http://localhost:3001/election', {
     params: { cityId: citiesData[0].id },
   });

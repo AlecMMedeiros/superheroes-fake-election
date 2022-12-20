@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import HeroesVotes from './pages/HeroesVotes';
 import { useContext } from 'react';
 import ElectionContext from './context/ElectionContext';
+import Loading from './components/Loading';
 
 function App() {
-  const { fetchAllCities } = useContext(ElectionContext)
-  const { baseData } =  useContext(ElectionContext);
+  const { fetchAllCities, baseData, loading } = useContext(ElectionContext)  ;
 
   useEffect(() => {
     fetchAllCities(baseData); 
@@ -13,8 +13,8 @@ function App() {
   }, [baseData]);
 
   return (    
-      <main>    
-        <HeroesVotes />
+      <main>
+        { loading ? <Loading /> :  <HeroesVotes /> }
       </main>
     );
 }

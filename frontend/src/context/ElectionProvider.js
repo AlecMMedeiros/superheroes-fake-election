@@ -5,10 +5,12 @@ import ElectionContext from './ElectionContext'
 function ElectionProvider({children}) { 
   const [baseData, setBaseData] = useState('Asgard');
   const [currentCity, setCurrentyCity] = useState([]);
+  const [loading , setLoading ] = useState(true)
 
   const fetchAllCities = async (getSelectedCity) => {
     const getData = await formatApiData(getSelectedCity);
     setCurrentyCity(getData);
+    setLoading(false)
   };
 
 
@@ -16,7 +18,7 @@ function ElectionProvider({children}) {
     setBaseData(newcity);
   }
   return (
-    <ElectionContext.Provider value={{baseData, currentCity, fetchAllCities, changeCity }}>{children}</ElectionContext.Provider>  
+    <ElectionContext.Provider value={{baseData, currentCity, loading, fetchAllCities, changeCity }}>{children}</ElectionContext.Provider>  
   )
 }
 
