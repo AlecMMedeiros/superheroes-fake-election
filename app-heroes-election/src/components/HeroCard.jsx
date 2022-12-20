@@ -20,7 +20,7 @@ export default function HeroCard() {
                   alt={hero.name}
                 />
                 <p className='text-base'>
-                  <strong>Name</strong>: {hero.name}
+                  <strong>Name</strong>: {hero.name.replace(/([A-Z])/g, " $1")}
                 </p>
                 <p>
                   <strong>Total Votes</strong>:{' '}
